@@ -13,8 +13,8 @@ BuildRequires:	libmpeg3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define _CFLAGS -O3 -funroll-loops
-%define _LIBS   -L/usr/lib -laviplay -lpthread
-%define _INC    -I/usr/include/libmpeg3 -I/usr/include/avifile -I/usr/include
+%define _LIBS	-L/usr/lib -laviplay -lpthread
+%define _INC	-I/usr/include/libmpeg3 -I/usr/include/avifile -I/usr/include
 
 %description
 Tools for converting AVI and MPEG to DivX encoded AVIs.
@@ -24,7 +24,7 @@ Narzêdzie do konwertowania plików AVI i MPEG do AVI kompresowanych
 DivXem.
 
 %prep
-%setup  -q
+%setup -q
 
 %build
 
