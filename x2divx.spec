@@ -8,6 +8,7 @@ Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 License:	GPL
 Source0:	http://www.emulinks.de/divx/%{name}-%{version}.tar.gz
+Patch0:		x2divx-est_remaining_time.patch
 URL:		http://www.emulinks.de/divx/
 BuildRequires:	avifile-devel >= 0.6
 BuildRequires:	libmpeg3-devel
@@ -26,6 +27,7 @@ DivXem.
 
 %prep
 %setup  -q
+%patch0 -p0
 
 %build
 %{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o avi2divx avi2divx.cpp 
