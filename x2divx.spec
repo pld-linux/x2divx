@@ -4,8 +4,6 @@ Name:		x2divx
 Version:	0.9a
 Release:	1
 Group:		X11/Applications/Multimedia
-Group(de):	X11/Applikationen/Multimedia
-Group(pl):	X11/Aplikacje/Multimedia
 License:	GPL
 Source0:	http://www.emulinks.de/divx/%{name}-%{version}.tar.gz
 Patch0:		x2divx-est_remaining_time.patch
