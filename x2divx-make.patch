@@ -1,0 +1,15 @@
+diff -urN x2divx-0.4.org/Makefile x2divx-0.4/Makefile
+--- x2divx-0.4.org/Makefile	Mon Oct 30 01:02:33 2000
++++ x2divx-0.4/Makefile	Mon Oct 30 01:03:32 2000
+@@ -1,9 +1,9 @@
+ all: avi2divx mpeg2divx
+ 
+ avi2divx:
+-	g++ -I/usr/local/include/avifile -o avi2divx avi2divx.cpp -laviplay -lpthread
++	g++ $(OPT) -I/usr/X11R6/include/avifile -L/usr/X11R6/lib -o avi2divx avi2divx.cpp -laviplay -lpthread
+ mpeg2divx:
+-	g++ -I./libmpeg3-1.2.1 -I/usr/local/include/avifile -o mpeg2divx mpeg2divx.cpp -laviplay -lpthread libmpeg3-1.2.1/libmpeg3.a
++	g++ $(OPT) -I./libmpeg3-1.2.1 -I/usr/X11R6/include/avifile -L/usr/X11R6/lib -o mpeg2divx mpeg2divx.cpp -laviplay -lpthread libmpeg3-1.2.1/libmpeg3.a
+ install:
+ 	install -m 755 avi2divx mpeg2divx /usr/local/bin
+ clean:
