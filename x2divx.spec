@@ -29,15 +29,14 @@ OPT="$RPM_OPT_FLAGS" %{__make}
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-install -d avi2divx  $RPM_BUILD_ROOT%{_bindir}
-install -d mpeg2divx $RPM_BUILD_ROOT%{_bindir}
+%{__make} DESTDIR=$RPM_BUILD_ROOT%{_bindir} install                                                                 
 
 gzip -9nf README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc *.gz
 %attr(755,root,root) %{_bindir}/*
+%doc README.gz
