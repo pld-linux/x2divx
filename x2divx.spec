@@ -8,7 +8,7 @@ License:	GPL
 Source0:	http://www.emulinks.de/divx/%{name}-%{version}.tar.gz
 # Source0-md5:	07a46bc1b9e6869900956db4adec866f
 URL:		http://www.emulinks.de/divx/
-BuildRequires:	avifile-devel >= 0.6
+BuildRequires:	avifile-devel >= 1:0.6
 BuildRequires:	libmpeg3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
