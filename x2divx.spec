@@ -13,6 +13,10 @@ BuildRequires:	avifile-devel >= 0.6
 BuildRequires:	libmpeg3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define _CFLAGS -O3 -funroll-loops
+%define _LIBS   -L/usr/X11R6/lib -laviplay -lpthread
+%define _INC    -I/usr/X11R6/include/libmpeg3 -I/usr/X11R6/include/avifile -I/usr/X11R6/include
+
 %description
 Tools for converting AVI and MPEG to DivX encoded AVIs.
 
@@ -24,13 +28,8 @@ DivXem.
 %setup  -q
 
 %build
-%{__cc} %{rpmcflags} %{rpmldflags} -funroll-loops -o avi2divx avi2divx.cpp \
-		-I/usr/X11R6/include -I/usr/X11R6/include/avifile -L/usr/X11R6/lib \
-		-laviplay -lpthread
-%{__cc} %{rpmcflags} %{rpmldflags} -funroll-loops -o mpeg2divx mpeg2divx.cpp \
-		-I/usr/X11R6/include -I/usr/X11R6/include/avifile \
-        -I/usr/X11R6/include/libmpeg3 -L/usr/X11R6/lib \
-		-laviplay -lpthread -lmpeg3
+%{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o avi2divx avi2divx.cpp 
+%{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o mpeg2divx mpeg2divx.cpp -lmpeg3
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -39,7 +38,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install avi2divx	$RPM_BUILD_ROOT%{_bindir}
 install	mpeg2divx	$RPM_BUILD_ROOT%{_bindir}
 
-gzip -9nf README
+gzip -9nf README AUTHORS COPYING  ChangeLog  INSTALL NEWS  README.jpc  TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
