@@ -1,16 +1,16 @@
 Summary:	AVI && MPEG to DivX AVI converter
 Summary(pl):	Konwerter AVI i MPEG do DivX AVI
 Name:		x2divx
-Version:	0.4
+Version:	0.8
 Release:	1
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 License:	GPL
 Source0:	http://www.emulinks.de/divx/%{name}-%{version}.tar.gz
-Patch0:		%{name}-make.patch
 URL:		http://www.emulinks.de/divx/
-BuildRequires:	avifile-devel >= 0.50
+BuildRequires:	avifile-devel >= 0.6
+BuildRequires:	libmpeg3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -22,16 +22,22 @@ DivXem.
 
 %prep
 %setup  -q
-%patch0 -p1
 
 %build
-OPT="%{rpmcflags}" %{__make}
+%{__cc} %{rpmcflags} %{rpmldflags} -funroll-loops -o avi2divx avi2divx.cpp \
+		-I/usr/X11R6/include/avifile -L/usr/X11R6/lib \
+		-laviplay -lpthread
+%{__cc} %{rpmcflags} %{rpmldflags} -funroll-loops -o mpeg2divx mpeg2divx.cpp \
+		-I/usr/X11R6/include/avifile -L/usr/X11R6/lib \
+		-laviplay -lpthread -lmpeg3
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_bindir}
-%{__make} DESTDIR=$RPM_BUILD_ROOT%{_bindir} install                                                                 
+
+install avi2divx	$RPM_BUILD_ROOT%{_bindir}
+install	mpeg2divx	$RPM_BUILD_ROOT%{_bindir}
+
 gzip -9nf README
 
 %clean
@@ -40,4 +46,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%doc README.gz
+%doc *.gz
