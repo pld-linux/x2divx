@@ -1,7 +1,7 @@
 Summary:	AVI && MPEG to DivX AVI converter
 Summary(pl):	Konwerter AVI i MPEG do DivX AVI
 Name:		x2divx
-Version:	0.10
+Version:	0.10a
 Release:	1
 Group:		X11/Applications/Multimedia
 License:	GPL
@@ -33,7 +33,7 @@ DivXem.
 %{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o avi2divx avi2divx.cpp
 %{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o mpeg2divx mpeg2divx.cpp -lmpeg3
 
-#%{__make}
+
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -42,7 +42,6 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install avi2divx	$RPM_BUILD_ROOT%{_bindir}
 install	mpeg2divx	$RPM_BUILD_ROOT%{_bindir}
 
-gzip -9nf README AUTHORS COPYING  ChangeLog  INSTALL NEWS  README.jpc  TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -50,4 +49,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%doc *.gz
+%doc  README COPYING  ChangeLog  NEWS  README.jpc  TODO
