@@ -6,7 +6,7 @@ Release:	1
 Group:		X11/Applications/Multimedia
 License:	GPL
 Source0:	http://www.emulinks.de/divx/%{name}-%{version}.tar.gz
-Patch0:		x2divx-est_remaining_time.patch
+Patch0:		%{name}-est_remaining_time.patch
 URL:		http://www.emulinks.de/divx/
 BuildRequires:	avifile-devel >= 0.6
 BuildRequires:	libmpeg3-devel
@@ -15,6 +15,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define _CFLAGS -O3 -funroll-loops
 %define _LIBS   -L/usr/X11R6/lib -laviplay -lpthread
 %define _INC    -I/usr/X11R6/include/libmpeg3 -I/usr/X11R6/include/avifile -I/usr/X11R6/include
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 Tools for converting AVI and MPEG to DivX encoded AVIs.
@@ -28,7 +31,7 @@ DivXem.
 %patch0 -p0
 
 %build
-%{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o avi2divx avi2divx.cpp 
+%{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o avi2divx avi2divx.cpp
 %{__cc} %{rpmcflags} %{rpmldflags} %{_CFLAGS} %{_INC} %{_LIBS} -o mpeg2divx mpeg2divx.cpp -lmpeg3
 
 %install
