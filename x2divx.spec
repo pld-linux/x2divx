@@ -1,5 +1,5 @@
 Summary:	AVI && MPEG to DivX AVI converter
-Summary(pl):	Konwerter AVI i MPEG do DivX AVI
+Summary(pl.UTF-8):   Konwerter AVI i MPEG do DivX AVI
 Name:		x2divx
 Version:	0.10a
 Release:	2
@@ -19,8 +19,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Tools for converting AVI and MPEG to DivX encoded AVIs.
 
-%description -l pl
-Narzêdzie do konwertowania plików AVI i MPEG do AVI kompresowanych
+%description -l pl.UTF-8
+NarzÄ™dzie do konwertowania plikÃ³w AVI i MPEG do AVI kompresowanych
 DivXem.
 
 %prep
